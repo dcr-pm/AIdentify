@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI.Dentify — Detect AI‑Generated Content</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <img src="assets/logo.png" alt="AI.Dentify logo" class="logo" />
+    <div class="title-group">
+      <h1>AI.Dentify</h1>
+      <p class="tagline">Uncover AI‑generated content in text, images, video and audio</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button class="tab active" data-target="text-panel">Text</button>
+      <button class="tab" data-target="image-panel">Image</button>
+      <button class="tab" data-target="video-panel">Video</button>
+      <button class="tab" data-target="audio-panel">Audio</button>
+    </div>
+
+    <section id="text-panel" class="panel active">
+      <h2>Analyze Text</h2>
+      <textarea id="text-input" rows="10" placeholder="Paste or type text here"></textarea>
+      <button id="analyze-text" class="primary-btn">Analyze Text</button>
+    </section>
+
+    <section id="image-panel" class="panel">
+      <h2>Analyze Image</h2>
+      <input type="file" id="image-file" accept="image/*" />
+      <button id="analyze-image" class="primary-btn">Analyze Image</button>
+    </section>
+
+    <section id="video-panel" class="panel">
+      <h2>Analyze Video</h2>
+      <input type="file" id="video-file" accept="video/*" />
+      <button id="analyze-video" class="primary-btn">Analyze Video</button>
+    </section>
+
+    <section id="audio-panel" class="panel">
+      <h2>Analyze Audio</h2>
+      <input type="file" id="audio-file" accept="audio/*" />
+      <button id="analyze-audio" class="primary-btn">Analyze Audio</button>
+    </section>
+
+    <div id="result-container" class="result hidden">
+      <h2>Result</h2>
+      <div id="result-card" class="result-card"></div>
+      <button id="close-result" class="secondary-btn">Close Result</button>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> AI.Dentify. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
