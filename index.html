@@ -1,63 +1,103 @@
+<!--
+  New unified UI for AIdentify.
+  This page provides a unified input panel and output panel for analyzing text, images,
+  audio, and video links. The design is inspired by a dark, modern theme and removes
+  any previous hero headings or taglines. It includes stubs for analysis functions
+  in script.js. You can refine these stubs to integrate real AI models or APIs.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI.Dentify — Detect AI‑Generated Content</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIdentify – Multi‑Modal Content Analyzer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header with logo and badges -->
   <header class="header">
-    <img src="assets/logo.png" alt="AI.Dentify logo" class="logo" />
-    <div class="title-group">
-      <h1>AI.Dentify</h1>
-      <p class="tagline">Uncover AI‑generated content in text, images, video and audio</p>
+    <div class="header-left">
+      <div class="logo"><!-- Optional logo placeholder --></div>
+    </div>
+    <div class="header-right badges">
+      <span class="badge"><!-- Icon placeholder -->Privacy‑first</span>
+      <span class="badge">Multi‑modal</span>
+      <span class="badge">Evidence‑based</span>
     </div>
   </header>
-
-  <main>
-    <div class="tabs">
-      <button class="tab active" data-target="text-panel">Text</button>
-      <button class="tab" data-target="image-panel">Image</button>
-      <button class="tab" data-target="video-panel">Video</button>
-      <button class="tab" data-target="audio-panel">Audio</button>
-    </div>
-
-    <section id="text-panel" class="panel active">
-      <h2>Analyze Text</h2>
-      <textarea id="text-input" rows="10" placeholder="Paste or type text here"></textarea>
-      <button id="analyze-text" class="primary-btn">Analyze Text</button>
+  <main class="main-grid">
+    <!-- Input panel -->
+    <section class="panel input-panel">
+      <div class="panel-header">
+        <h2>Input</h2>
+        <div class="mode-switch">
+          <button class="mode-btn active" data-mode="text">Text</button>
+          <button class="mode-btn" data-mode="image">Image</button>
+          <button class="mode-btn" data-mode="audio">Audio</button>
+          <button class="mode-btn" data-mode="video">Video Link</button>
+        </div>
+      </div>
+      <!-- Mode specific inputs -->
+      <div class="input-area">
+        <!-- Text input -->
+        <textarea id="text-input" rows="10" placeholder="Enter or paste text here…"></textarea>
+        <!-- Image input -->
+        <div id="image-input" class="file-drop hidden">
+          <p>Drop an image file here or click to browse</p>
+          <input type="file" id="image-file" accept="image/*">
+          <p id="image-file-name" class="file-name"></p>
+        </div>
+        <!-- Audio input -->
+        <div id="audio-input" class="file-drop hidden">
+          <p>Drop an audio file here or click to browse</p>
+          <input type="file" id="audio-file" accept="audio/*">
+          <p id="audio-file-name" class="file-name"></p>
+        </div>
+        <!-- Video link input -->
+        <input type="url" id="video-input" class="hidden" placeholder="Paste a YouTube / TikTok / Instagram link…">
+      </div>
+      <div class="panel-actions">
+        <button id="clear-btn" class="secondary-btn">Clear</button>
+        <button id="analyse-btn" class="primary-btn" disabled>Analyse</button>
+      </div>
     </section>
-
-    <section id="image-panel" class="panel">
-      <h2>Analyze Image</h2>
-      <input type="file" id="image-file" accept="image/*" />
-      <button id="analyze-image" class="primary-btn">Analyze Image</button>
+    <!-- Output panel -->
+    <section class="panel output-panel">
+      <h2>Output</h2>
+      <div id="output-content" class="output-content">
+        <div id="placeholder" class="placeholder">
+          <p>Analysis results will appear here</p>
+        </div>
+        <div id="result" class="result hidden">
+          <div class="result-item">
+            <h3>Verdict</h3>
+            <p id="result-verdict" class="result-value"></p>
+          </div>
+          <div class="result-item">
+            <h3>Confidence</h3>
+            <p id="result-confidence" class="result-value"></p>
+          </div>
+          <div class="result-item hidden" id="evidence-container">
+            <h3>Evidence</h3>
+            <ul id="result-evidence"></ul>
+          </div>
+          <div class="result-item hidden" id="stakeholder-container">
+            <h3>Stakeholder Summary</h3>
+            <div id="stakeholder-list"></div>
+          </div>
+          <div class="export-actions">
+            <button id="copy-btn" class="secondary-btn">Copy</button>
+            <button id="json-btn" class="secondary-btn">Download JSON</button>
+            <button id="pdf-btn" class="secondary-btn">Download PDF</button>
+          </div>
+        </div>
+      </div>
+      <div id="history" class="history hidden">
+        <h3>History</h3>
+        <ul id="history-list"></ul>
+      </div>
     </section>
-
-    <section id="video-panel" class="panel">
-      <h2>Analyze Video</h2>
-      <input type="file" id="video-file" accept="video/*" />
-      <button id="analyze-video" class="primary-btn">Analyze Video</button>
-    </section>
-
-    <section id="audio-panel" class="panel">
-      <h2>Analyze Audio</h2>
-      <input type="file" id="audio-file" accept="audio/*" />
-      <button id="analyze-audio" class="primary-btn">Analyze Audio</button>
-    </section>
-
-    <div id="result-container" class="result hidden">
-      <h2>Result</h2>
-      <div id="result-card" class="result-card"></div>
-      <button id="close-result" class="secondary-btn">Close Result</button>
-    </div>
   </main>
-
-  <footer>
-    © <span id="year"></span> AI.Dentify. All rights reserved.
-  </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
