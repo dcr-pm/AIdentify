@@ -388,3 +388,122 @@ function sleep(ms) {
 
 // Initialize the app on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', init);
+
+
+// Updated analysis functions using external API endpoints
+async function fakeAnalyseText(text) {
+  try {
+    const response = await fetch('YOUR_TEXT_DETECTION_API_ENDPOINT', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_TEXT_API_KEY',
+      },
+      body: JSON.stringify({ text }),
+    });
+    const data = await response.json();
+    return {
+      verdict: data.verdict ?? 'Unknown',
+  
+async function fakeAnalyseText(text) {
+  try {
+    const response = await fetch('YOUR_TEXT_DETECTION_API_ENDPOINT', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_TEXT_API_KEY',
+      },
+      body: JSON.stringify({ text }),
+    });
+    const data = await response.json();
+    return {
+      verdict: data.verdict ?? 'Unknown',
+      confidence: data.confidence ?? 0,
+      evidence: data.evidence ?? [],
+      stakeholders: data.stakeholders ?? [],
+    };
+  } catch (error) {
+    console.error('Text analysis error:', error);
+    return { verdict: 'Error', confidence: 0, evidence: [], stakeholders: [] };
+  }
+}
+    confidence: data.confidence ?? 0,
+      evidence: data.evidence ?? [],
+      stakeholders: data.stakeholders ?? [],
+    };
+  } catch (error) {
+    console.error('Text analysis error:', error);
+    return { verdict: 'Error', confidence: 0, evidence: [], stakeholders: [] };
+  }
+}
+
+async function fakeAnalyseImage(file) {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch('YOUR_IMAGE_DETECTION_API_ENDPOINT', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer YOUR_IMAGE_API_KEY',
+      },
+      body: formData,
+    });
+    const data = await response.json();
+    return {
+      verdict: data.verdict ?? 'Unknown',
+      confidence: data.confidence ?? 0,
+      evidence: data.evidence ?? [],
+      stakeholders: data.stakeholders ?? [],
+    };
+  } catch (error) {
+    console.error('Image analysis error:', error);
+    return { verdict: 'Error', confidence: 0, evidence: [], stakeholders: [] };
+  }
+}
+
+async function fakeAnalyseAudio(file) {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch('YOUR_AUDIO_DETECTION_API_ENDPOINT', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer YOUR_AUDIO_API_KEY',
+      },
+      body: formData,
+    });
+    const data = await response.json();
+    return {
+      verdict: data.verdict ?? 'Unknown',
+      confidence: data.confidence ?? 0,
+      evidence: data.evidence ?? [],
+      stakeholders: data.stakeholders ?? [],
+    };
+  } catch (error) {
+    console.error('Audio analysis error:', error);
+    return { verdict: 'Error', confidence: 0, evidence: [], stakeholders: [] };
+  }
+}
+
+async function fakeAnalyseVideo(url) {
+  try {
+    const response = await fetch('YOUR_VIDEO_DETECTION_API_ENDPOINT', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_VIDEO_API_KEY',
+      },
+      body: JSON.stringify({ url }),
+    });
+    const data = await response.json();
+    return {
+      verdict: data.verdict ?? 'Unknown',
+      confidence: data.confidence ?? 0,
+      evidence: data.evidence ?? [],
+      stakeholders: data.stakeholders ?? [],
+    };
+  } catch (error) {
+    console.error('Video analysis error:', error);
+    return { verdict: 'Error', confidence: 0, evidence: [], stakeholders: [] };
+  }
+}
